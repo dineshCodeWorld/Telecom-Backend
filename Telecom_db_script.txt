@@ -1,0 +1,78 @@
+drop schema telecom;
+create schema telecom;
+
+use telecom;
+
+drop table customer;
+drop table calldetails;
+drop table friendfamily;
+drop table plan;
+
+create table plan(
+plan_id integer primary key,
+plan_name varchar(50),
+local_rate integer,
+national_rate integer);
+
+create table customer(
+phone_no bigint primary key,
+name varchar(50),
+age integer,
+gender char,
+address varchar(50),
+plan_id integer references plan(plan_id),
+password varchar(50),
+profile varchar(50)
+);
+
+create table calldetails(
+id integer primary key,
+called_by bigint,
+called_to bigint,
+called_on date,
+duration integer);
+
+create table friendfamily(
+id integer primary key AUTO_INCREMENT,
+phone_no bigint references customer(phone_no),
+friend_and_family BIGINT 
+);
+
+insert into plan values(1,'PLN_60',60,60);
+insert into plan values(2,'PLN_10',10,20);
+insert into plan values(3,'PLN_30',30,60);
+insert into plan values(4,'PLN_90',90,100);
+insert into plan values(5,'PLN_15',15,25);
+insert into plan values(6,'PLN_150',150,160);
+insert into plan values(7,'PLN_200',200,210);
+insert into plan values(8,'PLN_175',175,200);
+insert into plan values(9,'PLN_250',250,270);
+
+insert into customer values(**********,'Mark',25,'M','Chicago',1,'Tel@123' , 'ADMIN'    );
+insert into customer values(**********,'Steve',56,'M','Texas',2,'7hjUavb*' ,'USER'   );
+insert into customer values(**********,'Linda',23,'F','NY',3,'@aPbj8','USER'  );
+insert into customer values(**********,'Kyle',56,'M','Texas',2,'7hjUavb*' ,'USER'   );
+
+
+insert into calldetails values(1,**********,**********,'2024-01-12',34);
+insert into calldetails values(2,**********,**********,'2024-01-11',4);
+insert into calldetails values(3,**********,**********,'2024-01-10',14);
+insert into calldetails values(4,**********,**********,'2024-02-13',3);
+insert into calldetails values(5,**********,**********,'2024-02-14',55);
+insert into calldetails values(6,**********,**********,'2024-03-15',126);
+insert into calldetails values(7,**********,**********,'2024-03-16',79);
+insert into calldetails values(8,**********,**********,'2024-03-17',3);
+
+ insert into friendfamily values(1,**********,**********);
+ insert into friendfamily values(2,**********,**********);
+ insert into friendfamily values(3,**********,**********);
+ insert into friendfamily values(4,**********,**********);
+
+
+
+commit;
+
+select * from customer;
+select * from calldetails;
+select * from friendfamily;
+select * from plan;
